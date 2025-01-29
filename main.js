@@ -33,6 +33,7 @@ function create() {
         graphics.fillStyle(0x32a852); // Grass (green)
       }
 
+      
       graphics.fillRect(x, y, tileSize, tileSize);
     }
   }
