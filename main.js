@@ -2,7 +2,7 @@ const config = {
   type: Phaser.AUTO,
   width: 600,
   height: 400,
-  backgroundColor: transparent,
+  backgroundColor: 0x87ceeb, // Light blue background (sky)
   scene: {
     create: create,
     update: update
