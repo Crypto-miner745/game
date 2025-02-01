@@ -3,18 +3,25 @@ const config = {
   width: window.innerWidth,
   height: window.innerHeight,
   backgroundColor: 0x87ceeb,
-  scene: { create, update, resize }
+  scene: { create, update }
 };
 
 const tileSize = 50;
 let box;
 let cursors;
-let graphics;
 
 const game = new Phaser.Game(config);
 
+// Full control over terrain map colors
+const terrainMap = [
+  [0xff0000, 0x32a852, 0x32a852, 0xa0522d, 0xa0522d], // Row 1
+  [0xa0522d, 0x32a852, 0xff0000, 0x32a852, 0x32a852], // Row 2
+  [0x1e90ff, 0xa0522d, 0x32a852, 0x32a852, 0x32a852], // Row 3
+  [0x32a852, 0x32a852, 0xa0522d, 0x1e90ff, 0x1e90ff], // Row 4
+  [0x32a852, 0xff0000, 0x32a852, 0xa0522d, 0x32a852], // Row 5
+];
+
 function create() {
-  graphics = this.add.graphics();
   drawTerrain(this);
 
   // Create the red box (player)
@@ -25,23 +32,23 @@ function create() {
 }
 
 function drawTerrain(scene) {
-  graphics.clear(); // Clear previous graphics
+  const rows = terrainMap.length;
+  const cols = terrainMap[0].length;
 
-  for (let row = 0; row < scene.game.config.height / tileSize; row++) {
-    for (let col = 0; col < scene.game.config.width / tileSize; col++) {
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
       const x = col * tileSize;
       const y = row * tileSize;
+      const color = terrainMap[row][col]; // Get color from the map
 
-      // Set structured terrain logic
-      if (row === 4) {
-        graphics.fillStyle(0x1e90ff); // River (blue)
-      } else if (col === 2) {
-        graphics.fillStyle(0xa0522d); // Dirt path (brown)
-      } else {
-        graphics.fillStyle(0x32a852); // Grass (green)
-      }
-
-      graphics.fillRect(x, y, tileSize, tileSize);
+      const terrainTile = scene.add.rectangle(
+        x + tileSize / 2,
+        y + tileSize / 2,
+        tileSize,
+        tileSize,
+        color
+      );
+      terrainTile.setStrokeStyle(1, 0x000000); // Optional stroke to see tile edges
     }
   }
 }
@@ -61,12 +68,6 @@ function update() {
     box.y += tileSize;
   }
 }
-
-window.addEventListener('resize', () => {
-  game.scale.resize(window.innerWidth, window.innerHeight);
-  graphics.clear(); // Clear the previous map
-  drawTerrain(game.scene.scenes[0]); // Redraw the map
-});
 
 // Remove any body margin to make the game fullscreen
 document.body.style.margin = 0;
