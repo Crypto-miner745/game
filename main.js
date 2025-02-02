@@ -19,11 +19,21 @@ const game = new Phaser.Game(config);
 
 // Full control over terrain map colors
 const terrainMap = [
-  [green, green, green, green, green], // Row 1
-  [green, green, green, green, brown], // Row 2
-  [blue, brown, green, brown, brown], // Row 3
-  [blue, blue, brown, blue, blue], // Row 4
-  [brown, brown, green, green, green], // Row 5
+  [green, green, green, green, green, green, green, green, green, green, green, green, green, green], 
+  [green, green, green, green, green, green, green, green, green, green, green, green, green, green], 
+  [green, green, green, green, green, green, green, green, green, green, green, green, green, green], 
+  [green, green, green, green, green, green, green, green, green, green, green, green, green, green], 
+  [green, green, green, green, green, green, green, green, green, brown, brown, brown, brown, brown],
+  [green, green, green, green, green, green, green, green, green, brown, green, green, green, green],
+  [green, green, green, green, green, green, green, green, green, brown, green, green, green, green],
+  [green, green, green, green, green, blue, blue, blue, blue, blue, brown, blue, blue, blue],
+  [green, green, green, green, green, blue, green, green, green, brown, green, green, green, green], 
+  [green, green, green, green, green, blue, green, green, green, brown, green, green, green, green],
+  [blue, blue, blue, blue, blue, blue, blue, green, green, green, brown, green, green, green],
+  [green, green, green, green, green, green, green, green, green, brown, green, green, green, green],
+  [green, green, green, green, green, green, green, green, green, brown, green, green, green, green],
+  [brown, brown, brown, brown, brown, brown, brown, brown, brown, brown, brown, brown, brown, brown],
+  [green, green, green, green, green, green, green, green, green, brown, green, green, green, green],
 ];
 
 function create() {
