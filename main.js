@@ -1,3 +1,8 @@
+const red = 0xff0000;
+const blue = 0x1e90ff;
+const brown = 0xa0522d;
+const green = 0x32a852;
+
 const config = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -14,18 +19,18 @@ const game = new Phaser.Game(config);
 
 // Full control over terrain map colors
 const terrainMap = [
-  [0xff0000, 0x32a852, 0x32a852, 0xa0522d, 0xa0522d], // Row 1
-  [0xa0522d, 0x32a852, 0xff0000, 0x32a852, 0x32a852], // Row 2
-  [0x1e90ff, 0xa0522d, 0x32a852, 0x32a852, 0x32a852], // Row 3
-  [0x32a852, 0x32a852, 0xa0522d, 0x1e90ff, 0x1e90ff], // Row 4
-  [0x32a852, 0xff0000, 0x32a852, 0xa0522d, 0x32a852], // Row 5
+  [green, green, green, green, green], // Row 1
+  [green, green, green, green, brown], // Row 2
+  [blue, brown, green, brown, brown], // Row 3
+  [blue, blue, brown, blue, blue], // Row 4
+  [brown, brown, green, green, green], // Row 5
 ];
 
 function create() {
   drawTerrain(this);
 
   // Create the red box (player)
-  box = this.add.rectangle(tileSize / 2, tileSize / 2, tileSize, tileSize, 0xff0000);
+  box = this.add.rectangle(tileSize / 2, tileSize / 2, tileSize, tileSize, red);
 
   // Enable keyboard input for movement
   cursors = this.input.keyboard.createCursorKeys();
@@ -48,7 +53,6 @@ function drawTerrain(scene) {
         tileSize,
         color
       );
-      terrainTile.setStrokeStyle(1, 0x000000); // Optional stroke to see tile edges
     }
   }
 }
